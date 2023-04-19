@@ -1,0 +1,13 @@
+ma STC.png
+size:1044,696
+filter:Linear,Linear
+pma:true
+Layer 2
+bounds:856,283,193,169
+rotate:90
+Layer 2 copy
+bounds:856,478,214,186
+rotate:90
+Layer 3
+bounds:2,2,690,852
+rotate:90

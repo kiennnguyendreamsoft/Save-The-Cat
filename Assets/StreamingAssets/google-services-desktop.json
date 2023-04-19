@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "175074035947",
+    "project_id": "save-the-doge-a4ee7",
+    "storage_bucket": "save-the-doge-a4ee7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175074035947:android:c6d5b53f40e30a0d40d6ae",
+        "android_client_info": {
+          "package_name": "com.dreamsoft.savethedoge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "175074035947-vtuil4eavtnpme7c0ohs32t1u782iadu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBgNtRTJrymIgToxQ8LkpIzm2AKyTECeU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "175074035947-vtuil4eavtnpme7c0ohs32t1u782iadu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
