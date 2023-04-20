@@ -10,7 +10,7 @@ public class LevelDesign : MonoBehaviour
     public int maxPointLineCanDraw = 200;
     private AstarPath astarPath;
     private GameObject hintLine;
-    
+    private List<CatController> listCat = new List<CatController>();
     private void Start()
     {
         hintLine = this.gameObject.transform.Find("HintLine").gameObject;
@@ -30,6 +30,12 @@ public class LevelDesign : MonoBehaviour
             {
                 hintLine.SetActive(false);
             }
+        }
+
+        listCat.Clear();
+        foreach (CatController cat in FindObjectsOfType<CatController>())
+        {
+            listCat.Add(cat);
         }
     }
     
@@ -64,5 +70,13 @@ public class LevelDesign : MonoBehaviour
     public void DogDie()
     {
         Instantiate(dogDie, this.transform);
+    }
+
+    public void ActiveWin()
+    {
+        foreach (CatController cat in listCat)
+        {
+            cat.RunAnimWin();
+        }
     }
 }

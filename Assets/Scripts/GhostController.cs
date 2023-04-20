@@ -110,6 +110,15 @@ public class GhostController : MonoBehaviour
                 isBack = false;
             }
         }
+
+        if (DirTarget.x < transform.position.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)

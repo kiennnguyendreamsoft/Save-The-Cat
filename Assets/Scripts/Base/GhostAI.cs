@@ -77,6 +77,14 @@ public class GhostAI : MonoBehaviour
         {
             currentWaypoint++;
         }
+        if (target.transform.position.x < transform.position.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
     }
     
     private void OnCollisionEnter2D(Collision2D other)

@@ -39,6 +39,9 @@ public class CatController : ObjectBase, IHit
             yield return new WaitForSeconds(Random.Range(2f, 6f));
             if(gameCompleted || scary) yield break;
             RunAnimSmile();
+            yield return new WaitForSeconds(1f);
+            if(gameCompleted || scary) yield break;
+            RunAnimIdle();
         }
     }
     // Start is called before the first frame update
@@ -46,7 +49,7 @@ public class CatController : ObjectBase, IHit
     {
         base.Start();
         RunAnimIdle();
-        //StartCoroutine(WaitSmile());
+        StartCoroutine(WaitSmile());
     }
 
     protected override void AfterStartGame()
@@ -62,6 +65,8 @@ public class CatController : ObjectBase, IHit
 
     public void RunAnimScary()
     {
+        if(scary) return;
+        scary = true;
         animator.Play("scary");
     }
 
@@ -73,5 +78,10 @@ public class CatController : ObjectBase, IHit
     public void RunAnimLose()
     {
         animator.Play("lose");
+    }
+    
+    public void RunAnimWin()
+    {
+        animator.Play("win");
     }
 }

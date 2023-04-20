@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class DataGame : MonoBehaviour
 {
+    public int maxLevel = 40;
     public static DataGame Instance;
-
     public int _Diamond;
     public int _NoAds;
     public int _Hint;
-
     public int lvl_current = 0;
     public int indexSkin_current = 1;
-    [Header("Level prefabs")]
-    public List<LevelDesign> lvl_prefabs;
-    public List<Sprite> spritesIdle_dog = new List<Sprite>();
-    public List<Sprite> spritesHit_dog = new List<Sprite>();
-
     public const string Key_new_game = "NewGame";
     public const string Key_lvl_current = "lvl_current";
     public const string Key_lvl_star = "lvl_star_"; //start from lvl 1, not 0
@@ -32,7 +26,6 @@ public class DataGame : MonoBehaviour
     {
         CheckNewGame();
         lvl_current = Get_lvl_current();
-        LoadDataSkin();
         GameController.Instance.ChangeDiamondTxt(_Diamond);
         //ChangeDiamond(20000);
     }
@@ -40,30 +33,6 @@ public class DataGame : MonoBehaviour
     {
         indexSkin_current = _index;
         PlayerPrefs.SetInt("_SkinSelected", _index);
-        LoadDataSkin();
-    }
-    void LoadDataSkin()
-    {
-        Load_Idle_Dog();
-        Load_Hit_Dog();
-    }
-    void Load_Idle_Dog()
-    {
-        spritesIdle_dog.Clear();
-        for (int i = 1; i <= 7; i++)
-        {
-            Sprite _sprite = Resources.Load<Sprite>("Sprite/Dog/" + indexSkin_current + "/" + i);
-            spritesIdle_dog.Add(_sprite);
-        }
-    }
-    void Load_Hit_Dog()
-    {
-        spritesHit_dog.Clear();
-        for (int i = 1; i <= 3; i++)
-        {
-            Sprite _sprite = Resources.Load<Sprite>("Sprite/Dog_Bite/" + indexSkin_current + "/" + i);
-            spritesHit_dog.Add(_sprite);
-        }
     }
 
 
@@ -113,7 +82,7 @@ public class DataGame : MonoBehaviour
     public void Unlock_Next_lvl()
     {
         GameController.Instance.panel_Levels.levelItems[lvl_current].Set_Star_lvl(0);
-        if (lvl_prefabs.Count > lvl_current)
+        if (maxLevel > lvl_current)
         {
             lvl_current++;
             PlayerPrefs.SetInt(Key_lvl_star + lvl_current, 0);

@@ -19,7 +19,6 @@ public class WaterController : TerrainController
             Instantiate(waterDrop, other.transform.position, Quaternion.identity);
             //Lose
             other.gameObject.GetComponent<IHit>().OnHit();
-            other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             other.gameObject.GetComponent<Collider2D>().enabled = false;
         }
         if (other.gameObject.CompareTag("bee"))

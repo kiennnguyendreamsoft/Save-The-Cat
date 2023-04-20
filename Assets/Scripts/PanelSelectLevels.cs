@@ -15,7 +15,7 @@ public class PanelSelectLevels : MonoBehaviour
     public void Load_lvl_item()
     {
         levelItems.Clear();
-        for (int i = 1; i <= DataGame.Instance.lvl_prefabs.Count; i++)
+        for (int i = 1; i <= DataGame.Instance.maxLevel; i++)
         {
             LevelItemPrefab item = Instantiate(level_item_prefab, contentHolder) as LevelItemPrefab;
             item.lvl_game = i;
@@ -26,7 +26,7 @@ public class PanelSelectLevels : MonoBehaviour
     public void SetNewGame()
     {
         PlayerPrefs.SetInt(DataGame.Key_lvl_star + 1, 0);
-        for (int i = 2; i <= DataGame.Instance.lvl_prefabs.Count; i++)
+        for (int i = 2; i <= DataGame.Instance.maxLevel; i++)
         {
             PlayerPrefs.SetInt(DataGame.Key_lvl_star + i, -1);
         }

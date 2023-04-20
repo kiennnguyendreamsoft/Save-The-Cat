@@ -116,7 +116,7 @@ public class GameController : MonoBehaviour
             yield return new WaitForSeconds(1);
             TimeToWin--;
             time_txt.text = TimeToWin.ToString();
-            SoundManager.Instance.PlaySoundClock(1-TimeToWin*0.05f);
+            SoundManager.Instance.PlaySoundClock(0.5f-TimeToWin*0.02f);
         }
         yield return new WaitForSeconds(1);
         time_txt.gameObject.SetActive(false);
@@ -192,7 +192,8 @@ public class GameController : MonoBehaviour
         yield return new WaitForEndOfFrame();
         SoundManager.Instance.StopSoundBee();
         btn_hint.gameObject.SetActive(true);
-        GameObject lvl = Instantiate(DataGame.Instance.lvl_prefabs[DataGame.Instance.lvl_current - 1].gameObject, gameHolder) as GameObject;
+        GameObject obj = Resources.Load<GameObject>("Level/"+DataGame.Instance.lvl_current);
+        GameObject lvl = Instantiate(obj, gameHolder);
         levelDesign = lvl.GetComponent<LevelDesign>();
         panel_Game.maxPointLineCanDraw = levelDesign.maxPointLineCanDraw;
         ChangeProcessDraw(1f);
@@ -328,7 +329,9 @@ public class GameController : MonoBehaviour
     }
     void ActiveWin()
     {
+        b_EndGame = true;
         SoundManager.Instance.StopSoundBee();
+        levelDesign.ActiveWin();
         particleWin.Play();
         StartCoroutine(WaitShowWin());
     }

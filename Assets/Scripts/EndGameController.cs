@@ -36,7 +36,7 @@ public class EndGameController : MonoBehaviour
         GameController.Instance.btn_retry_end.gameObject.SetActive(false);
         GameController.Instance.btn_next_end.gameObject.SetActive(true);
         DataGame.Instance.Set_Star_lvl_current(StarAmout);
-        if (DataGame.Instance.lvl_current < DataGame.Instance.lvl_prefabs.Count && StarAmout > 0)
+        if (DataGame.Instance.lvl_current < DataGame.Instance.maxLevel && StarAmout > 0)
         {
             DataGame.Instance.Unlock_Next_lvl();
         }

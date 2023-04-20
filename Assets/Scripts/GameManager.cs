@@ -5,9 +5,6 @@ using UnityEngine;
 public class GameManager : ManualSingleton<GameManager>
 {
     private TypeAds typeAds;
-
-
-
     public void SetTypeAds(TypeAds type)
     {
         typeAds = type;
