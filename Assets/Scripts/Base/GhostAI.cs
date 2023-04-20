@@ -18,10 +18,11 @@ public class GhostAI : MonoBehaviour
     private Seeker seeker;
     private Rigidbody2D rb;
     private List<CatController> cats = new List<CatController>();
+    private bool auto = true;
     void Start()
     {
         spinAnim.AnimationState.SetAnimation(0, "animation", true);
-        speed = Random.Range(75, 110);
+        speed += Random.Range(0, 50);
         foreach (CatController _dog in FindObjectsOfType<CatController>())
         {
             cats.Add(_dog);
@@ -30,14 +31,18 @@ public class GhostAI : MonoBehaviour
         target = cats[Random.Range(0, cats.Count - 1)];
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        auto = true;
         StartCoroutine(UpdatePath());
     }
 
     IEnumerator UpdatePath(){
         while(!GameController.Instance.b_EndGame)
         {
-            yield return new WaitForSeconds(0.3f);
-            seeker.StartPath(rb.position, target.transform.position, OnPathComplete);
+            yield return new WaitForSeconds(0.2f);
+            if (auto)
+            {
+                seeker.StartPath(rb.position, target.transform.position, OnPathComplete);
+            }
         }
         
     }
@@ -87,7 +92,7 @@ public class GhostAI : MonoBehaviour
         }
     }
     
-    private float m_Thrust = 20f;
+    private float m_Thrust = 50f;
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("dog"))
@@ -96,12 +101,22 @@ public class GhostAI : MonoBehaviour
         }
         if (other.gameObject.tag == "line")
         {
+            auto = false;
             Vector2 direction = (target.transform.position - transform.position).normalized;
             other.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * m_Thrust);
+            rb.AddForce(-1*direction*100);
             foreach (CatController cat in cats)
             {
                 cat.RunAnimScary();
             }
+
+            StartCoroutine(AutoOn());
         }
+    }
+
+    IEnumerator AutoOn()
+    {
+        yield return new WaitForSeconds(0.3f);
+        auto = true;
     }
 }

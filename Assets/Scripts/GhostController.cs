@@ -10,7 +10,6 @@ public class GhostController : MonoBehaviour
     public float BeeSpeed;
     private float BeeSpeedBack;
     new Rigidbody2D rigidbody2D;
-    private float m_Thrust = 30f;
     private Vector3 DirTarget;
     private bool isBack;
     private float timeBack;
@@ -120,7 +119,7 @@ public class GhostController : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
     }
-
+    private float m_Thrust = 50f;
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag != "bee")
@@ -132,6 +131,7 @@ public class GhostController : MonoBehaviour
             {
                 Vector2 direction = (DirTarget - transform.position).normalized;
                 other.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * m_Thrust);
+                rigidbody2D.AddForce(-1*direction*10);
                 foreach (CatController cat in cats)
                 {
                     cat.RunAnimScary();

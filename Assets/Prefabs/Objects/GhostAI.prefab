@@ -142,8 +142,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.027063847, y: 0.38409233}
-  m_Size: {x: 0.5605154, y: 0.6063528}
+  m_Offset: {x: -0.013524532, y: 0.22010994}
+  m_Size: {x: 0.31078053, y: 0.38068962}
   m_Direction: 0
 --- !u!50 &1468392142143854667
 Rigidbody2D:
@@ -223,5 +223,5 @@ MonoBehaviour:
   spinAnim: {fileID: 1468392142143854657}
   aiPath: {fileID: 0}
   target: {fileID: 0}
-  speed: 100
+  speed: 75
   nextWaypointDistance: 3

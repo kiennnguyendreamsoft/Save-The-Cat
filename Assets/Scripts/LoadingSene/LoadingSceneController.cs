@@ -48,7 +48,7 @@ public class LoadingSceneController : MonoBehaviour
         {
             float value = Percent / 100f;
             loadingValue.fillAmount = value;
-            ghost.anchoredPosition = new Vector3(820f * value, 120, 0);
+            ghost.anchoredPosition = new Vector3(820f * value, 80, 0);
         }
     }
 }

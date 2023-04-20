@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class GlassController : TerrainController
     private int leftCornerX;
     private int leftCornerY;
     public TileBase spriteCrash;
+    private bool active;
     public override void OnHit()
     {
     }
@@ -19,9 +21,10 @@ public class GlassController : TerrainController
     {
         GetGlasses();
     }
-    private void OnCollisionStay2D(Collision2D other)
+
+    private void Update()
     {
-        if (other.gameObject.tag == "dog")
+        if (active)
         {
             time -= Time.deltaTime;
             if (time > 0 && time <= 0.75f)
@@ -33,6 +36,11 @@ public class GlassController : TerrainController
                 Destroy(this.gameObject);
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        active = true;
     }
     void GetGlasses()
     {
