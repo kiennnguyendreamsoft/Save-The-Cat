@@ -6,12 +6,14 @@ public class SoundManager : ManualSingleton<SoundManager>
 {
     public AudioSource music;
     public AudioSource soundBee;
-    public AudioSource soundDog;
+    public AudioSource soundCatLose;
+    public AudioSource soundCatWin;
     public AudioSource soundWin;
     public AudioSource soundLose;
     public AudioSource soundButton;
     public AudioSource soundGift;
     public AudioSource soundClock;
+    public AudioSource soundGhostSpawn;
     public AudioClip[] listSoundDog;
     private int checkSound;
     // Start is called before the first frame update
@@ -65,12 +67,16 @@ public class SoundManager : ManualSingleton<SoundManager>
         soundBee.Stop();
     }
 
-    public void PlaySoundDog()
+    public void PlaySoundDogLose()
     {
         if(checkSound == 0) return;
-        if(listSoundDog.Length >= DataGame.Instance.indexSkin_current && listSoundDog[DataGame.Instance.indexSkin_current - 1]!=null)
-            soundDog.clip = listSoundDog[DataGame.Instance.indexSkin_current - 1];
-        soundDog.Play();
+        soundCatLose.Play();
+    }
+    
+    public void PlaySoundDogWin()
+    {
+        if(checkSound == 0) return;
+        soundCatWin.Play();
     }
 
     public void PlaySoundButton()
@@ -95,6 +101,12 @@ public class SoundManager : ManualSingleton<SoundManager>
     {
         if(checkSound == 0) return;
         soundGift.Play();
+    }
+    
+    public void PlaySoundGhostSpawn()
+    {
+        if(checkSound == 0) return;
+        soundGhostSpawn.Play();
     }
     
     public void PlaySoundClock(float volume)

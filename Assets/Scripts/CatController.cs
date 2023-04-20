@@ -18,7 +18,7 @@ public class CatController : ObjectBase, IHit
         {
             return;
         }
-        SoundManager.Instance.PlaySoundDog();
+        SoundManager.Instance.PlaySoundDogLose();
         RunAnimLose();
         gameCompleted = true;
         if (!GameController.Instance.b_EndGame)
@@ -67,6 +67,7 @@ public class CatController : ObjectBase, IHit
     {
         if(scary) return;
         scary = true;
+        SoundManager.Instance.PlaySoundGhostSpawn();
         animator.Play("scary");
     }
 
@@ -77,11 +78,13 @@ public class CatController : ObjectBase, IHit
 
     public void RunAnimLose()
     {
+        SoundManager.Instance.PlaySoundDogLose();
         animator.Play("lose");
     }
     
     public void RunAnimWin()
     {
+        SoundManager.Instance.PlaySoundDogWin();
         animator.Play("win");
     }
 }
