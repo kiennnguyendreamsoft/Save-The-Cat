@@ -27,14 +27,26 @@ public class GhostAI : MonoBehaviour
         {
             cats.Add(_dog);
         }
-
-        target = cats[Random.Range(0, cats.Count - 1)];
+        RandomTarget();
+        
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         auto = true;
         StartCoroutine(UpdatePath());
     }
 
+    public void RandomTarget()
+    {
+        if (cats.Count == 1)
+        {
+            target = cats[0];
+        }
+        else
+        {
+            target = cats[Random.Range(0, cats.Count)];
+        }
+    }
+    
     IEnumerator UpdatePath(){
         while(!GameController.Instance.b_EndGame)
         {
@@ -92,7 +104,7 @@ public class GhostAI : MonoBehaviour
         }
     }
     
-    private float m_Thrust = 50f;
+    private float m_Thrust = 300f;
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("dog"))
@@ -105,6 +117,7 @@ public class GhostAI : MonoBehaviour
             Vector2 direction = (target.transform.position - transform.position).normalized;
             other.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * m_Thrust);
             rb.AddForce(-1*direction*100);
+            RandomTarget();
             foreach (CatController cat in cats)
             {
                 cat.RunAnimScary();

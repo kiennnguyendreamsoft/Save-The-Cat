@@ -22,15 +22,27 @@ public class GhostController : MonoBehaviour
     {
         spinAnim.AnimationState.SetAnimation(0, "animation", true);
         rigidbody2D = GetComponent<Rigidbody2D>();
-        foreach (CatController _dog in FindObjectsOfType<CatController>())
+        foreach (CatController cat in FindObjectsOfType<CatController>())
         {
-            cats.Add(_dog);
+            cats.Add(cat);
         }
-        DirTarget = cats[0].transform.position;
+
+        RandomTarget();
         Left_or_Right = Random.Range(-2, 2);
         BeeSpeedBack = BeeSpeed * 2;
     }
 
+    public void RandomTarget()
+    {
+        if (cats.Count == 1)
+        {
+            DirTarget = cats[0].transform.position;
+        }
+        else
+        {
+            DirTarget = cats[Random.Range(0, cats.Count)].transform.position;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -119,7 +131,7 @@ public class GhostController : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
     }
-    private float m_Thrust = 50f;
+    private float m_Thrust = 300f;
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag != "bee")
@@ -132,6 +144,7 @@ public class GhostController : MonoBehaviour
                 Vector2 direction = (DirTarget - transform.position).normalized;
                 other.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * m_Thrust);
                 rigidbody2D.AddForce(-1*direction*10);
+                RandomTarget();
                 foreach (CatController cat in cats)
                 {
                     cat.RunAnimScary();

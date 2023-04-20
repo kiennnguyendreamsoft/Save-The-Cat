@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5838628128890337642}
   - component: {fileID: 5095156048888014459}
   - component: {fileID: 2963546598409858744}
-  - component: {fileID: 4279675022359695875}
+  - component: {fileID: 942330345093968067}
   m_Layer: 0
   m_Name: Shit
   m_TagString: Untagged
@@ -152,7 +152,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4279675022359695875
+--- !u!114 &942330345093968067
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,6 +161,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7162441815725795090}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3280718f0353f1c4091423d7f5a206c9, type: 3}
+  m_Script: {fileID: 11500000, guid: b0b9eb130340bb24bb7631e0c7f00430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
