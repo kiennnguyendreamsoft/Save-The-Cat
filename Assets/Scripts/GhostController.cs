@@ -10,7 +10,7 @@ public class GhostController : MonoBehaviour
     public float BeeSpeed;
     private float BeeSpeedBack;
     new Rigidbody2D rigidbody2D;
-    public float m_Thrust = 20f;
+    private float m_Thrust = 30f;
     private Vector3 DirTarget;
     private bool isBack;
     private float timeBack;
@@ -130,7 +130,8 @@ public class GhostController : MonoBehaviour
             timeBack = 0.2f;
             if (other.gameObject.tag == "line")
             {
-                other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(1f, 3f), Random.Range(1f, 3f)) * m_Thrust);
+                Vector2 direction = (DirTarget - transform.position).normalized;
+                other.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * m_Thrust);
                 foreach (CatController cat in cats)
                 {
                     cat.RunAnimScary();

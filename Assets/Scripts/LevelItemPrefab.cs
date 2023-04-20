@@ -18,7 +18,7 @@ public class LevelItemPrefab : MonoBehaviour
     {
         thisBtn = GetComponent<Button>();
         //Check lvl done or undone
-        lvl_txt.text = "Lv" + lvl_game;
+        lvl_txt.text = lvl_game.ToString();
         thisBtn.onClick.AddListener(OpenGame);
     }
 
@@ -48,6 +48,10 @@ public class LevelItemPrefab : MonoBehaviour
                 stars[2].SetActive(true);
             }
         }
+        
+        Debug.LogError("Test mở hết tất cả level");
+        lvl_unlock.SetActive(true);
+        lvl_lock.SetActive(false);
     }
     void OpenGame()
     {

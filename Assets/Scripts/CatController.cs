@@ -32,24 +32,11 @@ public class CatController : ObjectBase, IHit
         GameController.Instance.ActiveLose();
     }
     
-    IEnumerator WaitSmile()
-    {
-        while (!gameCompleted && !scary)
-        {
-            yield return new WaitForSeconds(Random.Range(2f, 6f));
-            if(gameCompleted || scary) yield break;
-            RunAnimSmile();
-            yield return new WaitForSeconds(1f);
-            if(gameCompleted || scary) yield break;
-            RunAnimIdle();
-        }
-    }
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         RunAnimIdle();
-        StartCoroutine(WaitSmile());
     }
 
     protected override void AfterStartGame()
@@ -70,12 +57,7 @@ public class CatController : ObjectBase, IHit
         SoundManager.Instance.PlaySoundGhostSpawn();
         animator.Play("scary");
     }
-
-    public void RunAnimSmile()
-    {
-        animator.Play("smile");
-    }
-
+    
     public void RunAnimLose()
     {
         SoundManager.Instance.PlaySoundDogLose();

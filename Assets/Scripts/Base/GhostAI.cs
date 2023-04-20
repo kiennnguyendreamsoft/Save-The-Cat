@@ -87,6 +87,7 @@ public class GhostAI : MonoBehaviour
         }
     }
     
+    private float m_Thrust = 20f;
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("dog"))
@@ -95,6 +96,8 @@ public class GhostAI : MonoBehaviour
         }
         if (other.gameObject.tag == "line")
         {
+            Vector2 direction = (target.transform.position - transform.position).normalized;
+            other.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * m_Thrust);
             foreach (CatController cat in cats)
             {
                 cat.RunAnimScary();

@@ -20,7 +20,7 @@ public class DataGame : MonoBehaviour
         _Diamond = PlayerPrefs.GetInt("DiamondValue", 0);
         _NoAds = PlayerPrefs.GetInt("AdsValue", 0);
         _Hint = PlayerPrefs.GetInt("HintValue", 1);
-        indexSkin_current = PlayerPrefs.GetInt("_SkinSelected", 1);
+        indexSkin_current = PlayerPrefs.GetInt("SkinSelected", 40);
     }
     private void Start()
     {
