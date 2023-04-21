@@ -7,18 +7,18 @@ public class Line : MonoBehaviour
     public LineRenderer _Render;
     public LineRenderer _ErrorRender;
     [SerializeField] private EdgeCollider2D _Colider;
-
     public float _LineSize = 10;
     bool _ColCheck;
-
     int colCount;
-
     bool endDraw = false;
     private List<Vector2> _point = new List<Vector2>();
-
+    private Rigidbody2D rigidbody2D;
+    private float chieuDai;
     private void Awake()
     {
         Setsize();
+        chieuDai = 0;
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     public void Setsize()
@@ -33,7 +33,7 @@ public class Line : MonoBehaviour
 
     public void SetPos(Vector2 pos)
     {
-        if (_ColCheck == true)
+        if (_ColCheck)
         {
            
             if (_point.Count - 2 >= 0 && _point.Count >= 2)
@@ -53,7 +53,7 @@ public class Line : MonoBehaviour
             }
             _Colider.points = _point.ToArray();
         }
-        else if (_ColCheck == false)
+        else
         {
             if (!CanAppend(pos))
             {
@@ -64,10 +64,10 @@ public class Line : MonoBehaviour
             _Render.SetPosition(_Render.positionCount - 1, _point[_point.Count - 1]);
             _Colider.points = _point.ToArray();
             int maxPoint = GameController.Instance.levelDesign.maxPointLineCanDraw;
-            float rate = (float)(maxPoint - _point.Count) / maxPoint;
+            float rate = (float)(maxPoint - chieuDai*10) / maxPoint;
             GameController.Instance.ChangeProcessDraw(rate);
+            if(rate <= 0.05f) DrawManager.Instance.EndDraw();
         }
-
     }
 
     public void EndDraw()
@@ -96,8 +96,22 @@ public class Line : MonoBehaviour
         {
             return true;
         }
-        return Vector2.Distance(_Render.GetPosition(_Render.positionCount - 1), transform.InverseTransformPoint(pos)) > DrawManager.Resolusion;
+
+        float distance = Vector2.Distance(_Render.GetPosition(_Render.positionCount - 1),
+            transform.InverseTransformPoint(pos));
+        if (distance > DrawManager.Resolusion)
+        {
+            chieuDai += distance;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
+
+    private int force = 1500;
+    private bool canForce = true;
     private void OnCollisionEnter2D(Collision2D other)
     {
 
@@ -109,6 +123,13 @@ public class Line : MonoBehaviour
         }
         colCount++;
 
+
+        if (other.transform.CompareTag("bee") && canForce)
+        {
+            rigidbody2D.AddForce(Vector2.up * force);
+            canForce = false;
+            StartCoroutine(CanForce());
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -121,4 +142,9 @@ public class Line : MonoBehaviour
         }
     }
 
+    IEnumerator CanForce()
+    {
+        yield return new WaitForSeconds(0.5f);
+        canForce = true;
+    }
 }

@@ -33,8 +33,6 @@ public class SellectSkinCat : MonoBehaviour
         {
             Unlock();
         }
-
-        btnBuy.interactable = false;
     }
 
     public void Unlock()

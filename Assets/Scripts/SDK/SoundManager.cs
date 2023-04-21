@@ -103,7 +103,7 @@ public class SoundManager : ManualSingleton<SoundManager>
         soundGift.Play();
     }
     
-    public void PlaySoundGhostSpawn()
+    public void PlaySoundCatScary()
     {
         if(checkSound == 0) return;
         soundGhostSpawn.Play();

@@ -22,10 +22,11 @@ public class PanelSelectSkin : ManualSingleton<PanelSelectSkin>
     {
         if (listSellectSkin.Count == 0)
         {
-            for (int i = 1; i < 7; i++)
+            for (int i = 1; i < 8; i++)
             {
                 SellectSkinCat clone = Instantiate(obj, _Content);
                 clone.Init(i);
+                listSellectSkin.Add(clone);
             }
         }
     }

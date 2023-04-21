@@ -85,7 +85,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &9162674397890484466
 MonoBehaviour:
@@ -141,7 +141,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spinAnim: {fileID: 9162674397890484466}
   cats: []
-  BeeSpeed: 1.2
 --- !u!70 &9162674397890484471
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

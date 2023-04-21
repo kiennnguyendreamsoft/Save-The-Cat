@@ -97,10 +97,16 @@ public class GameController : MonoBehaviour
         btn_retry_end.onClick.AddListener(Reload_Game);
         btn_next_end.onClick.AddListener(PlayGame_NextLvl);
         btn_Ads_end.onClick.AddListener(WatchAdsToEarn);
+        btn_hint.onClick.AddListener(ShowHind);
         panel_Levels.Load_lvl_item();
         drawManager.enabled = false;
     }
 
+    public void ShowHind()
+    {
+        levelDesign.ActiveHint();
+        btn_hint.gameObject.SetActive(false);
+    }
     public void CountTimeOut(int time)
     {
         StopAllCoroutines();
@@ -329,6 +335,7 @@ public class GameController : MonoBehaviour
     }
     void ActiveWin()
     {
+        PlayGame = false;
         b_EndGame = true;
         SoundManager.Instance.StopSoundBee();
         levelDesign.ActiveWin();
@@ -350,21 +357,35 @@ public class GameController : MonoBehaviour
         panel_EndGame.gameObject.SetActive(true);
         panel_EndGame.ActiveWin(count);
         btn_Ads_end.interactable = true;
-        PlayGame = false;
-        b_EndGame = true;
-        DiamondTxt.text = DataGame.Instance.ChangeDiamond(10).ToString();
+        DataGame.Instance.ChangeDiamond(10);
+        DiamondTxt.text = DataGame.Instance._Diamond.ToString();
         //FirebaseUtils.Instance.StageWin(DataGame.Instance.lvl_current);
         SoundManager.Instance.PlaySoundWin();
+    }
+
+    public void Lose()
+    {
+        PlayGame = false;
+        foreach (CatController cat in levelDesign.listCat)
+        {
+            cat.RunAnimLose();
+        }
+        StopAllCoroutines();
+        StartCoroutine(WaitShowLose());
+    }
+    
+    IEnumerator WaitShowLose()
+    {
+        yield return new WaitForSeconds(2f);
+        ActiveLose();
     }
     
     public void ActiveLose()
     {
-        StopAllCoroutines();
+        b_EndGame = true;
         SoundManager.Instance.StopSoundBee();
         panel_EndGame.gameObject.SetActive(true);
         panel_EndGame.ActiveLose();
-        PlayGame = false;
-        b_EndGame = true;
         SoundManager.Instance.PlaySoundLose();
         //FirebaseUtils.Instance.FailLevelStage(DataGame.Instance.lvl_current);
     }

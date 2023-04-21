@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class GlassController : TerrainController
 {
     private float time = 1.5f;
-    public Tilemap tileMap;
+    private Tilemap tileMap;
     public List<Vector3Int> listOfTilePositions = new List<Vector3Int>();
     private int leftCornerX;
     private int leftCornerY;
@@ -40,16 +40,28 @@ public class GlassController : TerrainController
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        active = true;
+        if (GameController.Instance.PlayGame)
+        {
+            active = true;
+        }
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (GameController.Instance.PlayGame)
+        {
+            active = true;
+        }
+    }
+
     void GetGlasses()
     {
-        for (int x = tileMap.cellBounds.xMin; x < tileMap.cellBounds.xMax; x++)
+        tileMap = GetComponent<Tilemap>();
+        for (int x = -100; x < 100; x++)
         {
-            for (int y = tileMap.cellBounds.yMin; y < tileMap.cellBounds.yMax; y++)
+            for (int y = -100; y < 100; y++)
             {
-                Vector3Int localPlace = (new Vector3Int(x, y, (int)tileMap.transform.position.y));
-                Vector3 place = tileMap.CellToWorld(localPlace);
+                Vector3Int localPlace = new Vector3Int(x, y, 0);
                 if (tileMap.HasTile(localPlace))
                 {
                     listOfTilePositions.Add(new Vector3Int(x - leftCornerX, y - leftCornerY, 0));

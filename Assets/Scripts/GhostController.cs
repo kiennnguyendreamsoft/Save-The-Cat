@@ -1,14 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Spine.Unity;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GhostController : MonoBehaviour
 {
     public SkeletonAnimation spinAnim;
     public List<CatController> cats = new List<CatController>();
-    public float BeeSpeed;
-    private float BeeSpeedBack;
+    private float BeeSpeed;
     new Rigidbody2D rigidbody2D;
     private Vector3 DirTarget;
     private bool isBack;
@@ -20,6 +21,7 @@ public class GhostController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BeeSpeed = 1.5f;
         spinAnim.AnimationState.SetAnimation(0, "animation", true);
         rigidbody2D = GetComponent<Rigidbody2D>();
         foreach (CatController cat in FindObjectsOfType<CatController>())
@@ -29,7 +31,6 @@ public class GhostController : MonoBehaviour
 
         RandomTarget();
         Left_or_Right = Random.Range(-2, 2);
-        BeeSpeedBack = BeeSpeed * 2;
     }
 
     public void RandomTarget()
@@ -111,7 +112,7 @@ public class GhostController : MonoBehaviour
             }
 
             Vector3 targetBack = (cats[0].transform.position - needToGo).normalized;
-            rigidbody2D.velocity = -targetBack * BeeSpeedBack;
+            rigidbody2D.velocity = -targetBack * BeeSpeed *2;
             if (timeBack > 0)
             {
                 timeBack -= Time.deltaTime;
@@ -131,37 +132,37 @@ public class GhostController : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
     }
-    private float m_Thrust = 300f;
+    private float m_Thrust = 500f;
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag != "bee")
+        if (!other.gameObject.CompareTag("bee"))
         {
             rigidbody2D.velocity = Vector2.zero;
             isBack = true;
-            timeBack = 0.2f;
-            if (other.gameObject.tag == "line")
+            timeBack = 0.5f;
+            if (other.gameObject.CompareTag("line"))
             {
-                Vector2 direction = (DirTarget - transform.position).normalized;
-                other.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * m_Thrust);
-                rigidbody2D.AddForce(-1*direction*10);
+                //Vector2 direction = (transform.position - DirTarget).normalized;
+                //other.gameObject.GetComponent<Line>().AddForce(direction * m_Thrust);
                 RandomTarget();
                 foreach (CatController cat in cats)
                 {
                     cat.RunAnimScary();
                 }
             }
-            if (other.gameObject.tag == "dog")
+            if (other.gameObject.CompareTag("dog"))
             {
                 other.gameObject.GetComponent<IHit>().OnHit();
             }
-            if (other.gameObject.tag == "wall")
+            if (other.gameObject.CompareTag("wall"))
             {
                 Left_or_Right *= -1;
             }
-            if (other.gameObject.tag == "ground")
+            if (other.gameObject.CompareTag("ground"))
             {
                 rigidbody2D.velocity += Vector2.right * Left_or_Right;
             }
         }
     }
+    
 }

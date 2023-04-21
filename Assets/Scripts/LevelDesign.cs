@@ -10,7 +10,7 @@ public class LevelDesign : MonoBehaviour
     public int maxPointLineCanDraw = 200;
     private AstarPath astarPath;
     private GameObject hintLine;
-    private List<CatController> listCat = new List<CatController>();
+    public List<CatController> listCat = new List<CatController>();
     private void Start()
     {
         hintLine = this.gameObject.transform.Find("HintLine").gameObject;

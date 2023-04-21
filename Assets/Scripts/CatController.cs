@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class CatController : ObjectBase, IHit
 {
+    public SkeletonMecanim skeletonMecanim;
     public Animator animator;
     private int indexAnim = 0;
     private bool gameCompleted;
@@ -19,23 +21,19 @@ public class CatController : ObjectBase, IHit
             return;
         }
         SoundManager.Instance.PlaySoundDogLose();
-        RunAnimLose();
         gameCompleted = true;
         if (!GameController.Instance.b_EndGame)
         {
-            StartCoroutine(WaitToLose());
+            GameController.Instance.Lose();
         }
     }
-    IEnumerator WaitToLose()
-    {
-        yield return new WaitForSeconds(2f);
-        GameController.Instance.ActiveLose();
-    }
-    
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        skeletonMecanim.initialSkinName = "skin" + DataGame.Instance.indexSkin_current;
+        skeletonMecanim.Initialize(true);
         RunAnimIdle();
     }
 
@@ -52,9 +50,9 @@ public class CatController : ObjectBase, IHit
 
     public void RunAnimScary()
     {
-        if(scary) return;
+        if(scary || gameCompleted) return;
         scary = true;
-        SoundManager.Instance.PlaySoundGhostSpawn();
+        SoundManager.Instance.PlaySoundCatScary();
         animator.Play("scary");
     }
     

@@ -40,7 +40,6 @@ public class EndGameController : MonoBehaviour
         {
             DataGame.Instance.Unlock_Next_lvl();
         }
-        DataGame.Instance.ChangeDiamond(10);
         txtGold.SetText("+10");
     }
     public void ActiveLose()

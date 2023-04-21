@@ -10,7 +10,7 @@ public class GhostAI : MonoBehaviour
     public SkeletonAnimation spinAnim;
     public AIPath aiPath;
     public CatController target;
-    public float speed = 200f;
+    private float speed = 200f;
     public float nextWaypointDistance = 3l;
     private Path path;
     private int currentWaypoint;
@@ -19,10 +19,11 @@ public class GhostAI : MonoBehaviour
     private Rigidbody2D rb;
     private List<CatController> cats = new List<CatController>();
     private bool auto = true;
+    private Vector2 vectorBack;
     void Start()
     {
         spinAnim.AnimationState.SetAnimation(0, "animation", true);
-        speed += Random.Range(0, 50);
+        speed = Random.Range(150, 200);
         foreach (CatController _dog in FindObjectsOfType<CatController>())
         {
             cats.Add(_dog);
@@ -76,24 +77,33 @@ public class GhostAI : MonoBehaviour
         }
         if(path == null) return;
 
-        if (currentWaypoint >= path.vectorPath.Count)
+        if (auto)
         {
-            reachedEndOfPath = true;
-            return;
+            if (currentWaypoint >= path.vectorPath.Count)
+            {
+                reachedEndOfPath = true;
+                return;
+            }
+            else
+            {
+                reachedEndOfPath = false;
+            }
+
+            Vector2 direction = ((Vector2) path.vectorPath[currentWaypoint] - rb.position).normalized;
+            rb.velocity = direction * speed * Time.deltaTime;
+            float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+            if (distance < nextWaypointDistance)
+            {
+                currentWaypoint++;
+            }
         }
         else
         {
-            reachedEndOfPath = false;
+            rb.velocity = vectorBack *2;
         }
-
-        Vector2 direction = ((Vector2) path.vectorPath[currentWaypoint] - rb.position).normalized;
-        rb.velocity = direction * speed * Time.deltaTime;
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-        if (distance < nextWaypointDistance)
-        {
-            currentWaypoint++;
-        }
+        
+        
         if (target.transform.position.x < transform.position.x)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -104,19 +114,18 @@ public class GhostAI : MonoBehaviour
         }
     }
     
-    private float m_Thrust = 300f;
+    private float m_Thrust = 1000f;
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("dog"))
         {
             other.gameObject.GetComponent<IHit>().OnHit();
         }
-        if (other.gameObject.tag == "line")
+        if (other.gameObject.CompareTag("line"))
         {
             auto = false;
-            Vector2 direction = (target.transform.position - transform.position).normalized;
-            other.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * m_Thrust);
-            rb.AddForce(-1*direction*100);
+            vectorBack = (transform.position - target.transform.position).normalized;
+            //other.gameObject.GetComponent<Rigidbody2D>().AddForce(vectorBack *-1 * m_Thrust);
             RandomTarget();
             foreach (CatController cat in cats)
             {
@@ -129,7 +138,7 @@ public class GhostAI : MonoBehaviour
 
     IEnumerator AutoOn()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         auto = true;
     }
 }

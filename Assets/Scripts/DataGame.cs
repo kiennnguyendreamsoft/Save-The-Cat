@@ -17,17 +17,16 @@ public class DataGame : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        _Diamond = PlayerPrefs.GetInt("DiamondValue", 0);
+        _Diamond = PlayerPrefs.GetInt("DiamondValue", 2000);
         _NoAds = PlayerPrefs.GetInt("AdsValue", 0);
         _Hint = PlayerPrefs.GetInt("HintValue", 1);
-        indexSkin_current = PlayerPrefs.GetInt("SkinSelected", 40);
+        indexSkin_current = PlayerPrefs.GetInt("SkinSelected", 1);
     }
     private void Start()
     {
         CheckNewGame();
         lvl_current = Get_lvl_current();
         GameController.Instance.ChangeDiamondTxt(_Diamond);
-        //ChangeDiamond(20000);
     }
     public void ChangeSkin(int _index)
     {
@@ -77,7 +76,10 @@ public class DataGame : MonoBehaviour
     public void Set_Star_lvl_current(int _numberStar)
     {
         GameController.Instance.panel_Levels.levelItems[lvl_current - 1].Set_Star_lvl(_numberStar);
-        PlayerPrefs.SetInt(Key_lvl_star + lvl_current, _numberStar);
+        if (PlayerPrefs.GetInt(Key_lvl_star + lvl_current, 0) < _numberStar)
+        {
+            PlayerPrefs.SetInt(Key_lvl_star + lvl_current, _numberStar);
+        }
     }
     public void Unlock_Next_lvl()
     {

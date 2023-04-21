@@ -174,7 +174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b5c948f48bfe54a91c3f5183044415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileMap: {fileID: 975351768703784765}
   listOfTilePositions: []
   spriteCrash: {fileID: 11400000, guid: 70cb56abbab69774887a968419d9f449, type: 2}
 --- !u!1 &1958519632772742474
@@ -240,9 +239,9 @@ GameObject:
   - component: {fileID: 618027034639771862}
   - component: {fileID: 4267262842831435246}
   - component: {fileID: 4934501126738267106}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: thorn
-  m_TagString: Untagged
+  m_TagString: thorn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -416,7 +415,7 @@ GameObject:
   - component: {fileID: 555754896378559747}
   - component: {fileID: 5253962705668714900}
   - component: {fileID: 3738540730969329890}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ground
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -590,9 +589,9 @@ GameObject:
   - component: {fileID: 2661835851085160702}
   - component: {fileID: 1344505040391714212}
   - component: {fileID: 6638289138629072354}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: water
-  m_TagString: Untagged
+  m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -766,9 +765,9 @@ GameObject:
   - component: {fileID: 1467068732392259554}
   - component: {fileID: 7913117534744415210}
   - component: {fileID: 4922642104983907028}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: magma
-  m_TagString: Untagged
+  m_TagString: magma
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
