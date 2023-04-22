@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class GhostController : MonoBehaviour
 {
-    public SkeletonAnimation spinAnim;
+    public Animator spinAnim;
     public List<CatController> cats = new List<CatController>();
     private float BeeSpeed;
     new Rigidbody2D rigidbody2D;
@@ -22,7 +22,7 @@ public class GhostController : MonoBehaviour
     void Start()
     {
         BeeSpeed = 1.5f;
-        spinAnim.AnimationState.SetAnimation(0, "animation", true);
+        spinAnim.Play("animation", -1,0);
         rigidbody2D = GetComponent<Rigidbody2D>();
         foreach (CatController cat in FindObjectsOfType<CatController>())
         {
@@ -139,11 +139,9 @@ public class GhostController : MonoBehaviour
         {
             rigidbody2D.velocity = Vector2.zero;
             isBack = true;
-            timeBack = 0.5f;
+            timeBack = 0.6f;
             if (other.gameObject.CompareTag("line"))
             {
-                //Vector2 direction = (transform.position - DirTarget).normalized;
-                //other.gameObject.GetComponent<Line>().AddForce(direction * m_Thrust);
                 RandomTarget();
                 foreach (CatController cat in cats)
                 {
@@ -164,5 +162,37 @@ public class GhostController : MonoBehaviour
             }
         }
     }
+
+    private bool autoAttack = true;
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("dog") || col.gameObject.CompareTag("line"))
+        {
+            if (autoAttack)
+            {
+                spinAnim.Play("fly_2", -1, 0);
+                autoAttack = false;
+                StartCoroutine(AutoOnAnimAttack());
+            }
+        }
+    }
     
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("dog") || other.gameObject.CompareTag("line"))
+        {
+            if (autoAttack)
+            {
+                spinAnim.Play("fly_2", -1, 0);
+                autoAttack = false;
+                StartCoroutine(AutoOnAnimAttack());
+            }
+        }
+    }
+    
+    IEnumerator AutoOnAnimAttack()                                                                                                                                
+    {
+        yield return new WaitForSeconds(0.6f);
+        autoAttack = true;
+    }
 }

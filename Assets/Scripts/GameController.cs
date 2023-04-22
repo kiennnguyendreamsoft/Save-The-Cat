@@ -133,7 +133,7 @@ public class GameController : MonoBehaviour
         PlayGame = true;
         levelDesign.UnActiveHint();
         btn_hint.gameObject.SetActive(false);
-        CountTimeOut(10);
+        CountTimeOut(12);
     }
 
     public void OpenPanelNoInternet()

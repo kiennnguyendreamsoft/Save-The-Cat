@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4279675022359695875}
   m_Layer: 13
   m_Name: ThornBall
-  m_TagString: thorn
+  m_TagString: saurieng
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

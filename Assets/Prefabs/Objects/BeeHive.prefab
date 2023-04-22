@@ -131,8 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawmPos: {fileID: 1582292515087425327}
-  ghost: {fileID: 9162674397890484470, guid: af44dd579839e4b449f7c16bdfd8d063, type: 3}
-  ghostAI: {fileID: 1468392142143854681, guid: 462a1a5d44799e243ab9126710f0fc6f, type: 3}
+  ghost: {fileID: 8545836500743778772, guid: af44dd579839e4b449f7c16bdfd8d063, type: 3}
+  ghostAI: {fileID: 1614297070107879080, guid: 462a1a5d44799e243ab9126710f0fc6f, type: 3}
   BeeAmount: 5
 --- !u!50 &492639482920892500
 Rigidbody2D:

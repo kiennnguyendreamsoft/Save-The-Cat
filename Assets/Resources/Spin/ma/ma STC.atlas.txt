@@ -1,13 +1,39 @@
 ma STC.png
-size:1044,696
+size:1452,696
 filter:Linear,Linear
 pma:true
 Layer 2
-bounds:856,283,193,169
+bounds:1044,47,193,169
 rotate:90
 Layer 2 copy
-bounds:856,478,214,186
+bounds:856,26,214,186
 rotate:90
 Layer 3
 bounds:2,2,690,852
+rotate:90
+Luoi_Liem
+bounds:856,242,450,575
+offsets:1,1,452,577
+rotate:90
+eff/eff_7_1
+bounds:1138,7,38,78
+offsets:2,1,44,82
+rotate:90
+eff/eff_7_6
+bounds:1044,5,40,92
+offsets:2,3,44,98
+rotate:90
+mat_P
+bounds:1218,6,115,84
+offsets:1,1,117,86
+mat_P_do
+bounds:1335,6,115,84
+offsets:1,1,117,86
+mat_T
+bounds:1215,92,148,98
+offsets:1,1,150,100
+rotate:90
+mat_T_do
+bounds:1315,92,148,98
+offsets:1,1,150,100
 rotate:90

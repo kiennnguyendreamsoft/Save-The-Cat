@@ -67,4 +67,5 @@ public class CatController : ObjectBase, IHit
         SoundManager.Instance.PlaySoundDogWin();
         animator.Play("win");
     }
+    
 }

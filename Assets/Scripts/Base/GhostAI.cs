@@ -1,13 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 using Spine.Unity;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GhostAI : MonoBehaviour
 {
-    public SkeletonAnimation spinAnim;
+    public Animator spinAnim;
     public AIPath aiPath;
     public CatController target;
     private float speed = 200f;
@@ -18,11 +21,11 @@ public class GhostAI : MonoBehaviour
     private Seeker seeker;
     private Rigidbody2D rb;
     private List<CatController> cats = new List<CatController>();
-    private bool auto = true;
+    private bool auto = true, autoAttack = true;
     private Vector2 vectorBack;
     void Start()
     {
-        spinAnim.AnimationState.SetAnimation(0, "animation", true);
+        spinAnim.Play("animation", -1,0);
         speed = Random.Range(150, 200);
         foreach (CatController _dog in FindObjectsOfType<CatController>())
         {
@@ -120,12 +123,11 @@ public class GhostAI : MonoBehaviour
         if (other.gameObject.CompareTag("dog"))
         {
             other.gameObject.GetComponent<IHit>().OnHit();
-        }
+        }   
         if (other.gameObject.CompareTag("line"))
         {
             auto = false;
             vectorBack = (transform.position - target.transform.position).normalized;
-            //other.gameObject.GetComponent<Rigidbody2D>().AddForce(vectorBack *-1 * m_Thrust);
             RandomTarget();
             foreach (CatController cat in cats)
             {
@@ -136,9 +138,41 @@ public class GhostAI : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("dog") || col.gameObject.CompareTag("line"))
+        {
+            if (autoAttack)
+            {
+                spinAnim.Play("fly_2", -1, 0);
+                autoAttack = false;
+                StartCoroutine(AutoOnAnimAttack());
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("dog") || other.gameObject.CompareTag("line"))
+        {
+            if (autoAttack)
+            {
+                spinAnim.Play("fly_2", -1, 0);
+                autoAttack = false;
+                StartCoroutine(AutoOnAnimAttack());
+            }
+        }
+    }
+
     IEnumerator AutoOn()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.6f);
         auto = true;
+    }
+    
+    IEnumerator AutoOnAnimAttack()
+    {
+        yield return new WaitForSeconds(0.6f);
+        autoAttack = true;
     }
 }
