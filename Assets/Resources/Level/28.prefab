@@ -55,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dogDie: {fileID: 8932924169795532450, guid: fe68030bd5d552243a90b68336051dde, type: 3}
   maxPointLineCanDraw: 350
+  listCat: []
 --- !u!1001 &592415646635232239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21535,8 +21536,6 @@ MonoBehaviour:
   maxX: 1
   minY: 0
   maxY: 0
-  speedX: 1
-  speeY: 1
 --- !u!4 &7449045063011381887 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9138855952114242405, guid: db03bb3e859373849888fdebecf2a58e, type: 3}
@@ -21745,11 +21744,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2329706890900378417, guid: 7879d40d40f2b4d47817a2a5bb9d2d1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 2.65
       objectReference: {fileID: 0}
     - target: {fileID: 2329706890900378417, guid: 7879d40d40f2b4d47817a2a5bb9d2d1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 2329706890900378417, guid: 7879d40d40f2b4d47817a2a5bb9d2d1e, type: 3}
       propertyPath: m_LocalPosition.z
