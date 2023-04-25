@@ -1,6 +1,7 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+    using TMPro;
+    using UnityEngine;
 
 public class BombController : ObjectBase, IHit
 {
@@ -11,6 +12,7 @@ public class BombController : ObjectBase, IHit
     bool gamestart;
     private bool isUsed;
     public GameObject explosionEffect;
+    public TextMeshPro txtTime;
 
     public void OnHit()
     {
@@ -19,7 +21,7 @@ public class BombController : ObjectBase, IHit
             hitMagma = true;
             rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
             collider2D.isTrigger = true;
-            CreateExplosion(ScaleExplore);
+            CreateExplosion(ScaleExplore * 2);
         }
     }
 
@@ -28,6 +30,7 @@ public class BombController : ObjectBase, IHit
         rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         gamestart = true;
         runMulti = false;
+        StartCoroutine(CountTime(5));
     }
 
     // Start is called before the first frame update
@@ -37,29 +40,28 @@ public class BombController : ObjectBase, IHit
         collider2D = GetComponent<CircleCollider2D>();
     }
 
-    protected override void LateUpdate()
+    IEnumerator CountTime(int time)
     {
-        base.LateUpdate();
-        if (gamestart)
+        int count = time;
+        txtTime.SetText(count.ToString());
+        while (count > 0)
         {
-
-            time -= Time.deltaTime;
-            if (time <= 0)
-            {
-                gamestart = false;
-                rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
-                collider2D.isTrigger = true;
-                CreateExplosion(1.5f);
-            }
+            yield return new WaitForSeconds(1);
+            count--;
+            txtTime.SetText(count.ToString());
         }
+        gamestart = false;
+        rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+        CreateExplosion(ScaleExplore);
     }
-    
+
     void CreateExplosion(float _scaleSize)
     {
         if(isUsed) return;
         isUsed = true;
         GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
         explosion.transform.localScale = Vector3.one * _scaleSize;
+        collider2D.radius *= _scaleSize;
         Destroy(this.gameObject,0.1f);
     }
 }

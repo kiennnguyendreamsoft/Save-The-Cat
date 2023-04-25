@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3769947fb184d1347807458b3cfcddb4, type: 2}
+  - {fileID: 2100000, guid: 644cd728c794e554f995ed6bb487f42b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,7 +86,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &6644715477114648786
 Animator:
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9db98c60740638449864eb028fbe7ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: c10bf5280a1addb4499015b6e3ba4f91, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: f03eb6ff6c77e97488a07c12e13dafba, type: 2}
   initialSkinName: skin1
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0

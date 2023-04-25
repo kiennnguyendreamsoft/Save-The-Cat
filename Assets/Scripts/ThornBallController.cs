@@ -12,13 +12,10 @@ public class ThornBallController : ObjectBase
     private void OnCollisionEnter2D(Collision2D other)
     {
         //Destroy something
-        if (other.gameObject.tag == "bee")
-        {
-            Destroy(other.gameObject);
-        }
         if (other.gameObject.tag == "dog")
         {
-            other.gameObject.GetComponent<IHit>().OnHit();
+            other.gameObject.GetComponent<CatController>().RunAnimLose_u();
+            other.gameObject.GetComponent<CatController>().OnHit();
         }
     }
 }

@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "175074035947",
-    "project_id": "save-the-doge-a4ee7",
-    "storage_bucket": "save-the-doge-a4ee7.appspot.com"
+    "project_number": "349245387288",
+    "project_id": "save-the-cat-dev",
+    "storage_bucket": "save-the-cat-dev.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:175074035947:android:c6d5b53f40e30a0d40d6ae",
+        "mobilesdk_app_id": "1:349245387288:android:d9986d6ef62ae0aa6ac96d",
         "android_client_info": {
-          "package_name": "com.dreamsoft.savethedoge"
+          "package_name": "com.dreamS.savethecat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "175074035947-vtuil4eavtnpme7c0ohs32t1u782iadu.apps.googleusercontent.com",
+          "client_id": "349245387288-d3lgmahid399nm0a703n1njlbk99hhu0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDBgNtRTJrymIgToxQ8LkpIzm2AKyTECeU"
+          "current_key": "AIzaSyA4PB_3k0SfXnE8fApcqgZJgpRfyEk-XgY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "175074035947-vtuil4eavtnpme7c0ohs32t1u782iadu.apps.googleusercontent.com",
+              "client_id": "349245387288-d3lgmahid399nm0a703n1njlbk99hhu0.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "349245387288-jel5clgmvetvpvokc92hpbcqtb4odbqs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dreamS.savethecat"
+              }
             }
           ]
         }

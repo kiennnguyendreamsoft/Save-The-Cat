@@ -36,11 +36,10 @@ public class PanelSelectSkin : ManualSingleton<PanelSelectSkin>
         int _Diamond = PlayerPrefs.GetInt("DiamondValue", 0);
         if (_Diamond > sellect.cost)
         {
-            _Diamond -= sellect.cost;
-            PlayerPrefs.SetInt("DiamondValue", _Diamond);
             PlayerPrefs.SetInt("Unlock_"+sellect.id, 1);
             sellect.Unlock();
             ChoseSkin(sellect);
+            GameController.Instance.ChangeDiamondTxt(-1 * sellect.cost);
         }
     }
     

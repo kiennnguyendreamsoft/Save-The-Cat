@@ -18,7 +18,7 @@ public class ColectedDialog : MonoBehaviour
         Instance = null;
     }
 
-    public void ShowDialog(Sprite colectedSprite, int amount)
+    public void ShowDialog(int amount)
     {
         transform.GetChild(0).gameObject.SetActive(true);
         if (amount == -1)
@@ -44,7 +44,7 @@ public class ColectedDialog : MonoBehaviour
         {
             value = Random.Range(Min, Max);
             AmountTxt.text = "+" + value.ToString();
-            GameController.Instance.DiamondTxt.text = DataGame.Instance.ChangeDiamond(value).ToString();
+            GameController.Instance.ShowRewardDiamond(value);
         }
 
     }

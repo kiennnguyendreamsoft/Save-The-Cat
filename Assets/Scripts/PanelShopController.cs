@@ -31,7 +31,6 @@ public class PanelShopController : MonoBehaviour
     {
         if (diamondPrice <= PlayerPrefs.GetInt("DiamondValue", 20))
         {
-            DataGame.Instance.ChangeDiamond(-diamondPrice);
             DataGame.Instance.ChangeHint(value);
             Debug.Log(diamondPrice);
         }

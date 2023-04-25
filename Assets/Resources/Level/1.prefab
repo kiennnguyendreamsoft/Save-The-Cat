@@ -51,7 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dogDie: {fileID: 8932924169795532450, guid: fe68030bd5d552243a90b68336051dde, type: 3}
-  maxPointLineCanDraw: 270
+  maxPointLineCanDraw: 300
+  listCat: []
 --- !u!1 &6176001759309175187
 GameObject:
   m_ObjectHideFlags: 0

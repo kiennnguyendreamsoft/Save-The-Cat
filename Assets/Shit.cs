@@ -14,7 +14,8 @@ public class Shit: ObjectBase
     {
         if (other.gameObject.tag == "dog")
         {
-            other.gameObject.GetComponent<IHit>().OnHit();
+            other.gameObject.GetComponent<CatController>().RunAnimLose_shit();
+            other.gameObject.GetComponent<CatController>().OnHit();
         }
     }
 }

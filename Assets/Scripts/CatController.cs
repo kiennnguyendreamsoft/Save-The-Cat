@@ -13,6 +13,7 @@ public class CatController : ObjectBase, IHit
     private int indexAnim = 0;
     private bool gameCompleted;
     private bool scary;
+    private bool lose;
     public void OnHit()
     {
         //game over
@@ -58,8 +59,23 @@ public class CatController : ObjectBase, IHit
     
     public void RunAnimLose()
     {
+        if(lose) return;
         SoundManager.Instance.PlaySoundDogLose();
         animator.Play("lose");
+    }
+    
+    public void RunAnimLose_shit()
+    {
+        lose = true;
+        SoundManager.Instance.PlaySoundDogLose();
+        animator.Play("lose_shit");
+    }
+    
+    public void RunAnimLose_u()
+    {
+        lose = true;
+        SoundManager.Instance.PlaySoundDogLose();
+        animator.Play("lose_u");
     }
     
     public void RunAnimWin()

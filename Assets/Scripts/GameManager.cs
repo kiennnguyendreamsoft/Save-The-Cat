@@ -5,15 +5,27 @@ using UnityEngine;
 public class GameManager : ManualSingleton<GameManager>
 {
     private TypeAds typeAds;
-    public void SetTypeAds(TypeAds type)
+    
+    public void ShowAdsAddCoinWin()
+    {
+        ShowAds(TypeAds.CoinWin);
+    }
+    public void ShowAdsAddCoin()
+    {
+        ShowAds(TypeAds.AddCoin);
+    }
+    
+    public void ShowAds(TypeAds type)
     {
         typeAds = type;
+        Admob.Instance.ShowRewardedAd();
     }
     public void GiveRewardAds()
     {
+        
         if (typeAds == TypeAds.AddCoin)
         {
-            DataGame.Instance.ChangeDiamond(50);
+            GameController.Instance.ChangeDiamondTxt(50);
         }
         else if (typeAds == TypeAds.CoinWin)
         {
@@ -21,7 +33,7 @@ public class GameManager : ManualSingleton<GameManager>
         }
         else if (typeAds == TypeAds.Suggestion)
         {
-            DataGame.Instance.ChangeHint(1);
+            GameController.Instance.levelDesign.ActiveHint();
         }
     }
 }

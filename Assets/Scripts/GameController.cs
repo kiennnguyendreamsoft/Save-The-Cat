@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using TrackingFirebase;
 //using TrackingFirebase;
 using Unity.VisualScripting;
 
@@ -90,7 +91,7 @@ public class GameController : MonoBehaviour
             delegate
             {
                 Reload_Game();
-                //FirebaseUtils.Instance.RetryStage(DataGame.Instance.lvl_current);
+                FirebaseUtils.Instance.RetryStage(DataGame.Instance.lvl_current);
             });
         //Game End
         btn_home_end.onClick.AddListener(BackToMainMenu);
@@ -100,12 +101,13 @@ public class GameController : MonoBehaviour
         btn_hint.onClick.AddListener(ShowHind);
         panel_Levels.Load_lvl_item();
         drawManager.enabled = false;
+        
+        ChangeDiamondTxt(0);
     }
 
     public void ShowHind()
     {
-        levelDesign.ActiveHint();
-        btn_hint.gameObject.SetActive(false);
+        GameManager.Instance.ShowAds(TypeAds.Suggestion);
     }
     public void CountTimeOut(int time)
     {
@@ -116,6 +118,7 @@ public class GameController : MonoBehaviour
     IEnumerator Count(int time)
     {
         TimeToWin = time;
+        time_txt.text = TimeToWin.ToString();
         time_txt.gameObject.SetActive(true);
         while (TimeToWin > 0)
         {
@@ -190,7 +193,7 @@ public class GameController : MonoBehaviour
         drawManager.enabled = true;
         panel_EndGame.gameObject.SetActive(false);
         DataGame.Instance.SaveLvlCurrent();
-        //FirebaseUtils.Instance.Start_Lvl(DataGame.Instance.lvl_current);
+        FirebaseUtils.Instance.Start_Lvl(DataGame.Instance.lvl_current);
         StartCoroutine(StartAdsInter());
     }
     IEnumerator createNewLvl()
@@ -357,9 +360,9 @@ public class GameController : MonoBehaviour
         panel_EndGame.gameObject.SetActive(true);
         panel_EndGame.ActiveWin(count);
         btn_Ads_end.interactable = true;
-        DataGame.Instance.ChangeDiamond(10);
+        ShowRewardDiamond(10);
         DiamondTxt.text = DataGame.Instance._Diamond.ToString();
-        //FirebaseUtils.Instance.StageWin(DataGame.Instance.lvl_current);
+        FirebaseUtils.Instance.StageWin(DataGame.Instance.lvl_current);
         SoundManager.Instance.PlaySoundWin();
     }
 
@@ -382,12 +385,12 @@ public class GameController : MonoBehaviour
     
     public void ActiveLose()
     {
+        if(!b_EndGame)SoundManager.Instance.PlaySoundLose();
         b_EndGame = true;
         SoundManager.Instance.StopSoundBee();
         panel_EndGame.gameObject.SetActive(true);
         panel_EndGame.ActiveLose();
-        SoundManager.Instance.PlaySoundLose();
-        //FirebaseUtils.Instance.FailLevelStage(DataGame.Instance.lvl_current);
+        FirebaseUtils.Instance.FailLevelStage(DataGame.Instance.lvl_current);
     }
 
     IEnumerator StartAdsInter()
@@ -420,11 +423,16 @@ public class GameController : MonoBehaviour
 
     public void ChangeDiamondTxt(int value)
     {
-        DiamondTxt.SetText(PlayerPrefs.GetInt("DiamondValue", 20).ToString());
-        if (ColectedDialog.Instance != null && value>0)
-        {
-            ColectedDialog.Instance.ShowDialog(Resources.Load<Sprite>("NewUi/Home_0015_4"), value);
-        }
+        int diamond = PlayerPrefs.GetInt("DiamondValue");
+        diamond += value;
+        PlayerPrefs.SetInt("DiamondValue", diamond);
+        DiamondTxt.SetText(diamond.ToString());
+    }
+
+    public void ShowRewardDiamond(int value)
+    {
+        ColectedDialog.Instance.ShowDialog(value);
+        ChangeDiamondTxt(value);
     }
     public void ChangeHintTxt(int value)
     {

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DataGame : MonoBehaviour
 {
-    public int maxLevel = 40;
+    public int maxLevel = 60;
     public static DataGame Instance;
-    public int _Diamond;
+    public int _Diamond = 0;
     public int _NoAds;
     public int _Hint;
-    public int lvl_current = 0;
+    public int lvl_current = 0; 
     public int indexSkin_current = 1;
     public const string Key_new_game = "NewGame";
     public const string Key_lvl_current = "lvl_current";
@@ -17,7 +17,6 @@ public class DataGame : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        _Diamond = PlayerPrefs.GetInt("DiamondValue", 2000);
         _NoAds = PlayerPrefs.GetInt("AdsValue", 0);
         _Hint = PlayerPrefs.GetInt("HintValue", 1);
         indexSkin_current = PlayerPrefs.GetInt("SkinSelected", 1);
@@ -26,22 +25,13 @@ public class DataGame : MonoBehaviour
     {
         CheckNewGame();
         lvl_current = Get_lvl_current();
-        GameController.Instance.ChangeDiamondTxt(_Diamond);
     }
     public void ChangeSkin(int _index)
     {
         indexSkin_current = _index;
         PlayerPrefs.SetInt("_SkinSelected", _index);
     }
-
-
-    public int ChangeDiamond(int value)
-    {
-        _Diamond += value;
-        PlayerPrefs.SetInt("DiamondValue", _Diamond);
-        GameController.Instance.ChangeDiamondTxt(value);
-        return _Diamond;
-    }
+    
     public int ChangeHint(int value)
     {
         _Hint += value;

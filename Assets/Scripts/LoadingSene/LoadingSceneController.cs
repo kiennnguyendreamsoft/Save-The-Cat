@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TrackingFirebase;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -38,7 +39,8 @@ public class LoadingSceneController : MonoBehaviour
                 GameController.Instance.TurnOffMusic();
             }
             this.gameObject.SetActive(false);
-            //FirebaseUtils.Instance.OpenApp();
+            Admob.Instance.ShowAppOpenAd();
+            FirebaseUtils.Instance.OpenApp();
         }
     }
 

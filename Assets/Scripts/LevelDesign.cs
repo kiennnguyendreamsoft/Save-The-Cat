@@ -49,14 +49,8 @@ public class LevelDesign : MonoBehaviour
     }
     public void ActiveHint()
     {
-        if (this.gameObject.transform.Find("HintLine") != null)
-        {
-            DataGame.Instance.ChangeHint(-1);
-            if (hintLine != null)
-            {
-                hintLine.SetActive(true);
-            }
-        }
+        GameController.Instance.btn_hint.gameObject.SetActive(false);
+        hintLine.SetActive(true);
     }
 
     public void UnActiveHint()
