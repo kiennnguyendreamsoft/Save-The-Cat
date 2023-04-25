@@ -55,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dogDie: {fileID: 8932924169795532450, guid: fe68030bd5d552243a90b68336051dde, type: 3}
   maxPointLineCanDraw: 600
+  listCat: []
 --- !u!1001 &434998681545312897
 PrefabInstance:
   m_ObjectHideFlags: 0

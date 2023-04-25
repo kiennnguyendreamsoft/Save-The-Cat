@@ -20,7 +20,6 @@ public class ThornController : MonoBehaviour
         if (other.gameObject.CompareTag("bee"))
         {
             //create smoke
-
             //Destroy
             Destroy(other.gameObject);
             if(smokeEffect == null) return;

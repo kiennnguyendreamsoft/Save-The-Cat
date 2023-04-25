@@ -142,7 +142,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   - m_RefCount: 1
-    m_Data: {r: 0.97317195, g: 0.61989594, b: 0.682949, a: 1}
+    m_Data: {r: 0.7607223, g: 0.45123637, b: 0.47870645, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7803,6 +7803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dogDie: {fileID: 8932924169795532450, guid: fe68030bd5d552243a90b68336051dde, type: 3}
   maxPointLineCanDraw: 350
+  listCat: []
 --- !u!1 &4746052308138457053
 GameObject:
   m_ObjectHideFlags: 0
@@ -8813,7 +8814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3027683116121035216, guid: dde675e1a7628dd46a900a362c9cffee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3735069770425212971, guid: dde675e1a7628dd46a900a362c9cffee, type: 3}
       propertyPath: m_RootOrder

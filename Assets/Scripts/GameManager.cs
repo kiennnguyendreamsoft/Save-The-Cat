@@ -18,7 +18,7 @@ public class GameManager : ManualSingleton<GameManager>
     public void ShowAds(TypeAds type)
     {
         typeAds = type;
-        Admob.Instance.ShowRewardedAd();
+        Admob.Instance.ShowAdsReward();
     }
     public void GiveRewardAds()
     {

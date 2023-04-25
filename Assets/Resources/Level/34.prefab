@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dogDie: {fileID: 8932924169795532450, guid: fe68030bd5d552243a90b68336051dde, type: 3}
   maxPointLineCanDraw: 700
+  listCat: []
 --- !u!1001 &592415646635232239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -128,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3027683116121035216, guid: dde675e1a7628dd46a900a362c9cffee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3735069770425212971, guid: dde675e1a7628dd46a900a362c9cffee, type: 3}
       propertyPath: m_RootOrder

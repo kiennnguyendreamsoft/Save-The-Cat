@@ -5594,19 +5594,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f9c9b95e9e662489a167206b73f6cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  star_1: {fileID: 2980162482619986499}
-  star_2: {fileID: 2980162484257528767}
-  star_3: {fileID: 2980162484539637764}
-  star_4: {fileID: 2980162482752868425}
-  star_5: {fileID: 2980162484442169974}
-  btnAccept: {fileID: 2980162482591577277}
-  imgStars:
-  - {fileID: 2980162483666248595}
-  - {fileID: 2980162484290685011}
-  - {fileID: 2980162483197934529}
-  - {fileID: 2980162483003605630}
-  - {fileID: 2980162482878298599}
-  starNumber: 5
 --- !u!1 &1342973825
 GameObject:
   m_ObjectHideFlags: 0

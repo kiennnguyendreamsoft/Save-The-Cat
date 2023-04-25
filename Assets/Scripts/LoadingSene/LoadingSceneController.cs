@@ -39,7 +39,7 @@ public class LoadingSceneController : MonoBehaviour
                 GameController.Instance.TurnOffMusic();
             }
             this.gameObject.SetActive(false);
-            Admob.Instance.ShowAppOpenAd();
+            Admob.Instance.ShowAdIfReady();
             FirebaseUtils.Instance.OpenApp();
         }
     }
