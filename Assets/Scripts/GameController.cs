@@ -361,7 +361,6 @@ public class GameController : MonoBehaviour
         panel_EndGame.ActiveWin(count);
         btn_Ads_end.interactable = true;
         ShowRewardDiamond(10);
-        DiamondTxt.text = DataGame.Instance._Diamond.ToString();
         FirebaseUtils.Instance.StageWin(DataGame.Instance.lvl_current);
         SoundManager.Instance.PlaySoundWin();
     }
