@@ -395,6 +395,7 @@ public class GameController : MonoBehaviour
     IEnumerator StartAdsInter()
     {
         yield return new WaitForSeconds(0.2f);
+        Admob.Instance.ShowInterstitial();
     }
     
     public void TurnOnMusic()

@@ -34,7 +34,7 @@ public class PanelSelectSkin : ManualSingleton<PanelSelectSkin>
     public void UnlockSkin(SellectSkinCat sellect)
     {
         int _Diamond = PlayerPrefs.GetInt("DiamondValue", 0);
-        if (_Diamond > sellect.cost)
+        if (_Diamond >= sellect.cost)
         {
             PlayerPrefs.SetInt("Unlock_"+sellect.id, 1);
             sellect.Unlock();

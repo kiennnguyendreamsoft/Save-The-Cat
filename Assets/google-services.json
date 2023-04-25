@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:349245387288:android:d9986d6ef62ae0aa6ac96d",
+        "mobilesdk_app_id": "1:349245387288:android:f366ebcfa1c203eb6ac96d",
         "android_client_info": {
-          "package_name": "com.dreamS.savethecat"
+          "package_name": "quantumx.app.savethecat.dev"
         }
       },
       "oauth_client": [
