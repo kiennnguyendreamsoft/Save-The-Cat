@@ -26,7 +26,6 @@ public class Admob : ManualSingleton<Admob>
     {
         MaxSdkCallbacks.OnSdkInitializedEvent += (MaxSdkBase.SdkConfiguration sdkConfiguration) => {
             // Hiển thị trình gỡ lỗi dàn xếp
-            MaxSdk.ShowMediationDebugger();
         };
         MaxSdk.SetTestDeviceAdvertisingIdentifiers(new string[]{"3d9b1cb5-c1d3-4bd1-6e6a-10ca1ad1abe1"} );
         MaxSdk.InitializeSdk();
@@ -251,6 +250,7 @@ public class Admob : ManualSingleton<Admob>
         if (NoAds)
         {
             HideBanner();
+            GameController.Instance.HaveNoAds();
         }
     }
 }

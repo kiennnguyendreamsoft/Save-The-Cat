@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
 
     public GameObject panelNoInternet;
     public ParticleSystem particleWin;
+    private int countPlay;
     private void Awake()
     {
         Instance = this;
@@ -194,7 +195,11 @@ public class GameController : MonoBehaviour
         panel_EndGame.gameObject.SetActive(false);
         DataGame.Instance.SaveLvlCurrent();
         FirebaseUtils.Instance.Start_Lvl(DataGame.Instance.lvl_current);
-        StartCoroutine(StartAdsInter());
+        countPlay++;
+        if (countPlay % 2 == 0)
+        {
+            StartCoroutine(StartAdsInter());
+        }
     }
     IEnumerator createNewLvl()
     {
