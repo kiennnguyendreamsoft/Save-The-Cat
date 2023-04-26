@@ -246,7 +246,7 @@ public class GameController : MonoBehaviour
     public void BuyNoAds()
     {
         //mua No Ads
-        //InAppProcess.Instance.InitBuyIAP("removeAds");
+        InAppProcess.Instance.InitBuyIAP();
     }
     public void EndGame()
     {
@@ -399,7 +399,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator StartAdsInter()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
         Admob.Instance.ShowInterstitial();
     }
     
