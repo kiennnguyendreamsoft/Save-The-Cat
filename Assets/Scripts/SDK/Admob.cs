@@ -5,15 +5,15 @@ using UnityEngine;
 public class Admob : ManualSingleton<Admob>
 {
 #if UNITY_ANDROID
-    private const string AppOpenAdUnitId = "163048d29c92097f";
-    private string bannerAdUnitId = "75d94ec195edc194";
-    private string adUnitId = "3bc7b9157196918f";
-    private string idReward = "10d7d21fe8740e3e";
+    private const string AppOpenAdUnitId = "015d06a7abb45815";
+    private string bannerAdUnitId = "74635e0ddee677bf";
+    private string adUnitId = "04ed20453d7dae93";
+    private string idReward = "4ab7fae3428c6312";
 #elif UNITY_IPHONE
-    private const string AppOpenAdUnitId = "9bc2e5049f532ea8";
-    private string bannerAdUnitId = "108d73059f89e90f";
-    private string adUnitId = "e4a3ecaf9b139b8b";
-    private string idReward = "757769d2ec1da0c8";
+    private const string AppOpenAdUnitId = "aee489c590e360cc";
+    private string bannerAdUnitId = "cd1e131ca18ff2ac";
+    private string adUnitId = "010aa24db52b8115";
+    private string idReward = "e087615ebc15e790";
 #else
     private const string AppOpenAdUnitId = "YOUR_IOS_AD_UNIT_ID";
     private string bannerAdUnitId = "YOUR_IOS_BANNER_AD_UNIT_ID";
