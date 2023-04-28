@@ -42,15 +42,7 @@ public class Admob : ManualSingleton<Admob>
     {
         MaxSdk.LoadAppOpenAd(AppOpenAdUnitId);
     }
- 
-    private void OnApplicationPause(bool pauseStatus)
-    {
-        if (!pauseStatus)
-        {
-            ShowAdIfReady();
-        }
-    }
-    
+
     public void ShowAdIfReady()
     {
         if (MaxSdk.IsAppOpenAdReady(AppOpenAdUnitId))
