@@ -35,7 +35,6 @@ public class Admob : ManualSingleton<Admob>
         ShowBanner();
         yield return new WaitForSeconds(2);
         InitializeInterstitialAds();
-        yield return new WaitForSeconds(2);
         InitializeRewardedAds();
     }
 
@@ -103,16 +102,10 @@ public class Admob : ManualSingleton<Admob>
     {
         MaxSdk.HideBanner(bannerAdUnitId);
     }
-    
-    int retryAttempt;
 
     public void InitializeInterstitialAds()
     {
         // Attach callback
-        MaxSdkCallbacks.Interstitial.OnAdLoadedEvent += OnInterstitialLoadedEvent;
-        MaxSdkCallbacks.Interstitial.OnAdLoadFailedEvent += OnInterstitialLoadFailedEvent;
-        MaxSdkCallbacks.Interstitial.OnAdDisplayedEvent += OnInterstitialDisplayedEvent;
-        MaxSdkCallbacks.Interstitial.OnAdClickedEvent += OnInterstitialClickedEvent;
         MaxSdkCallbacks.Interstitial.OnAdHiddenEvent += OnInterstitialHiddenEvent;
         MaxSdkCallbacks.Interstitial.OnAdDisplayFailedEvent += OnInterstitialAdFailedToDisplayEvent;
     
@@ -120,39 +113,26 @@ public class Admob : ManualSingleton<Admob>
         LoadInterstitial();
     }
 
+    private bool isLoadInter;
     private void LoadInterstitial()
     {
+        if(isLoadInter) return;
+        StartCoroutine(DelayLoadInter());
+    }
+
+    IEnumerator DelayLoadInter()
+    {
+        isLoadInter = true;
+        yield return new WaitForSeconds(2);
         MaxSdk.LoadInterstitial(adUnitId);
+        isLoadInter = false;
     }
-
-    private void OnInterstitialLoadedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
-    {
-        // Interstitial ad is ready for you to show. MaxSdk.IsInterstitialReady(adUnitId) now returns 'true'
-
-        // Reset retry attempt
-        retryAttempt = 0;
-    }
-
-    private void OnInterstitialLoadFailedEvent(string adUnitId, MaxSdkBase.ErrorInfo errorInfo)
-    {
-        // Interstitial ad failed to load 
-        // AppLovin recommends that you retry with exponentially higher delays, up to a maximum delay (in this case 64 seconds)
-
-        retryAttempt++;
-        double retryDelay = Math.Pow(2, Math.Min(6, retryAttempt));
-    
-        Invoke("LoadInterstitial", (float) retryDelay);
-    }
-
-    private void OnInterstitialDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo) {}
 
     private void OnInterstitialAdFailedToDisplayEvent(string adUnitId, MaxSdkBase.ErrorInfo errorInfo, MaxSdkBase.AdInfo adInfo)
     {
         // Interstitial ad failed to display. AppLovin recommends that you load the next ad.
         LoadInterstitial();
     }
-
-    private void OnInterstitialClickedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo) {}
 
     private void OnInterstitialHiddenEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
@@ -166,6 +146,10 @@ public class Admob : ManualSingleton<Admob>
         if ( MaxSdk.IsInterstitialReady(adUnitId) )
         {
             MaxSdk.ShowInterstitial(adUnitId);
+        }
+        else
+        {
+            LoadInterstitial();
         }
     }
     
@@ -185,27 +169,32 @@ public class Admob : ManualSingleton<Admob>
         LoadRewardedAd();
     }
 
+    private bool isLoadVideo;
     private void LoadRewardedAd()
     {
-        MaxSdk.LoadRewardedAd(idReward);
+        if(isLoadVideo) return;
+        StartCoroutine(DelayLoadVideo());
     }
 
+    IEnumerator DelayLoadVideo()
+    {
+        isLoadVideo = true;
+        yield return new WaitForSeconds(2);
+        MaxSdk.LoadRewardedAd(idReward);
+        yield return new WaitForSeconds(1);
+        isLoadVideo = false;
+    }
     private void OnRewardedAdLoadedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
         // Rewarded ad is ready for you to show. MaxSdk.IsRewardedAdReady(adUnitId) now returns 'true'.
 
         // Reset retry attempt
-        retryAttempt = 0;
     }
 
     private void OnRewardedAdLoadFailedEvent(string adUnitId, MaxSdkBase.ErrorInfo errorInfo)
     {
         // Rewarded ad failed to load 
         // AppLovin recommends that you retry with exponentially higher delays, up to a maximum delay (in this case 64 seconds).
-
-        retryAttempt++;
-        double retryDelay = Math.Pow(2, Math.Min(6, retryAttempt));
-        Invoke("LoadRewardedAd", (float) retryDelay);
     }
 
     private void OnRewardedAdDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo) {}
@@ -241,6 +230,10 @@ public class Admob : ManualSingleton<Admob>
         if (MaxSdk.IsRewardedAdReady(idReward))
         {
             MaxSdk.ShowRewardedAd(idReward);
+        }
+        else
+        {
+            LoadRewardedAd();
         }
     }
 

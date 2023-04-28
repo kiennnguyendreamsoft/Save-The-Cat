@@ -36,7 +36,6 @@ public class DataGame : MonoBehaviour
     {
         _Hint += value;
         PlayerPrefs.SetInt("HintValue", _Hint);
-        GameController.Instance.ChangeHintTxt(value);
         return _Hint;
     }
     public void SaveLvlCurrent()

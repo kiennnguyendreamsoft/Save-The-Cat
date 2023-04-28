@@ -11,7 +11,7 @@ public class CatController : ObjectBase, IHit
     public SkeletonMecanim skeletonMecanim;
     public Animator animator;
     private int indexAnim = 0;
-    private bool gameCompleted;
+    private bool gameCompleted ;
     private bool scary;
     private bool lose;
     public void OnHit()
@@ -32,6 +32,7 @@ public class CatController : ObjectBase, IHit
     // Start is called before the first frame update
     protected override void Start()
     {
+        gameCompleted = false;
         base.Start();
         skeletonMecanim.initialSkinName = "skin" + DataGame.Instance.indexSkin_current;
         skeletonMecanim.Initialize(true);

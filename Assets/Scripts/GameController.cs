@@ -399,7 +399,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator StartAdsInter()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         Admob.Instance.ShowInterstitial();
     }
     
@@ -438,13 +438,5 @@ public class GameController : MonoBehaviour
     {
         ColectedDialog.Instance.ShowDialog(value);
         ChangeDiamondTxt(value);
-    }
-    public void ChangeHintTxt(int value)
-    {
-        // HintTxt.text = PlayerPrefs.GetInt("HintValue").ToString();
-        // if (ColectedDialog.Instance != null && value>0)
-        // {
-        //     ColectedDialog.Instance.ShowDialog(Resources.Load<Sprite>("NewUi/Starter-pack_0004_Layer-7"), value);
-        // }
     }
 }
