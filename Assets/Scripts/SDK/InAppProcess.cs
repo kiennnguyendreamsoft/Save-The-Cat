@@ -73,6 +73,11 @@ public class InAppProcess : MonoBehaviour, IStoreListener
         }
     }
 
+    public void OnInitializeFailed(InitializationFailureReason error, string message)
+    {
+        throw new NotImplementedException();
+    }
+
     /// <summary>
     /// Kết quả mua thành công
     /// </summary>
