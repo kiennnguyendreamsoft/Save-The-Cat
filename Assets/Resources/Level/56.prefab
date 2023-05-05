@@ -60191,7 +60191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6644715477114648789, guid: 577009fe939ab214fba7240c5d8e9e25, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.10000005
+      value: 0.41999993
       objectReference: {fileID: 0}
     - target: {fileID: 6644715477114648789, guid: 577009fe939ab214fba7240c5d8e9e25, type: 3}
       propertyPath: m_LocalPosition.z
@@ -60224,6 +60224,14 @@ PrefabInstance:
     - target: {fileID: 6644715477114648789, guid: 577009fe939ab214fba7240c5d8e9e25, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306799534733386767, guid: 577009fe939ab214fba7240c5d8e9e25, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306799534733386767, guid: 577009fe939ab214fba7240c5d8e9e25, type: 3}
+      propertyPath: m_GravityScale
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 577009fe939ab214fba7240c5d8e9e25, type: 3}
@@ -60331,7 +60339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6644715477114648789, guid: 577009fe939ab214fba7240c5d8e9e25, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.13
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 6644715477114648789, guid: 577009fe939ab214fba7240c5d8e9e25, type: 3}
       propertyPath: m_LocalPosition.z
@@ -60364,6 +60372,14 @@ PrefabInstance:
     - target: {fileID: 6644715477114648789, guid: 577009fe939ab214fba7240c5d8e9e25, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306799534733386767, guid: 577009fe939ab214fba7240c5d8e9e25, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306799534733386767, guid: 577009fe939ab214fba7240c5d8e9e25, type: 3}
+      propertyPath: m_GravityScale
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 577009fe939ab214fba7240c5d8e9e25, type: 3}
