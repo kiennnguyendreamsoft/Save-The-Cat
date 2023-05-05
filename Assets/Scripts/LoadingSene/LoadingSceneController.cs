@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TrackingFirebase;
@@ -39,9 +40,13 @@ public class LoadingSceneController : MonoBehaviour
                 GameController.Instance.TurnOffMusic();
             }
             this.gameObject.SetActive(false);
-            Admob.Instance.ShowAdIfReady();
-            FirebaseUtils.Instance.OpenApp();
+            TimeCount = 0;
         }
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.ShowOpenAds();
     }
 
     public void SetBarValue(float Percent)

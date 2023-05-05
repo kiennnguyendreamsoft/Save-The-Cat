@@ -88,7 +88,12 @@ public class GameController : MonoBehaviour
         btn_Close_setting.onClick.AddListener(BackToMainMenu);
         //Game Scene
         btn_home_game.onClick.AddListener(BackToMainMenu);
-        btn_retry_game.onClick.AddListener(Admob.Instance.ShowInterstitialLose);;
+        btn_retry_game.onClick.AddListener(
+            delegate
+            {
+                StopAllCoroutines();
+                Admob.Instance.ShowInterstitialLose();
+            });
         //Game End
         btn_home_end.onClick.AddListener(BackToMainMenu);
         btn_retry_end.onClick.AddListener(Admob.Instance.ShowInterstitialLose);
@@ -273,16 +278,6 @@ public class GameController : MonoBehaviour
         SoundManager.Instance.PlaySoundButton();
         Debug.Log("Watch Ads");
         btn_Ads_end.interactable = false;
-    }
-    void CleanGameScene()
-    {
-        if (gameHolder.childCount > 0)
-        {
-            foreach (LevelDesign item in gameHolder.GetComponentsInChildren<LevelDesign>())
-            {
-                Destroy(item.gameObject);
-            }
-        }
     }
     void UnactivePanel_WhenPlayGame()
     {

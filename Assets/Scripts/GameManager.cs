@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TrackingFirebase;
 using UnityEngine;
 
 public class GameManager : ManualSingleton<GameManager>
 {
     private TypeAds typeAds;
-    
+
+    public void ShowOpenAds()
+    {
+        Admob.Instance.ShowAdIfReady();
+        FirebaseUtils.Instance.OpenApp();
+    }
     public void ShowAdsAddCoinWin()
     {
         ShowAds(TypeAds.CoinWin);
