@@ -195,7 +195,7 @@ public class GameController : MonoBehaviour
         panel_EndGame.gameObject.SetActive(false);
         DataGame.Instance.SaveLvlCurrent();
         FirebaseUtils.Instance.Start_Lvl(DataGame.Instance.lvl_current);
-        countPlay++;
+        
     }
     IEnumerator createNewLvl()
     {
@@ -331,6 +331,7 @@ public class GameController : MonoBehaviour
     {
         PlayGame = false;
         b_EndGame = true;
+        countPlay++;
         SoundManager.Instance.StopSoundBee();
         levelDesign.ActiveWin();
         particleWin.Play();

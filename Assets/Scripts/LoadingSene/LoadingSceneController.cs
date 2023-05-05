@@ -41,12 +41,13 @@ public class LoadingSceneController : MonoBehaviour
             }
             this.gameObject.SetActive(false);
             TimeCount = 0;
+            GameManager.Instance.ShowOpenAds();
         }
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.ShowOpenAds();
+       
     }
 
     public void SetBarValue(float Percent)
