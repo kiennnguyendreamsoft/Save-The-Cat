@@ -129,22 +129,56 @@ public class Admob : ManualSingleton<Admob>
     private void OnInterstitialHiddenEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
         // Interstitial ad is hidden. Pre-load the next ad.
+        if (checkAdsWin)
+        {
+            GameController.Instance.PlayGame_NextLvl();
+        }
+        else
+        {
+            GameController.Instance.Reload_Game();
+        }
         LoadInterstitial();
     }
 
-    public void ShowInterstitial()
+    public void ShowInterstitialLose()
     {
         if(NoAds) return;
         if ( MaxSdk.IsInterstitialReady(adUnitId) )
         {
+            checkAdsWin = false;
             MaxSdk.ShowInterstitial(adUnitId);
         }
         else
         {
+            GameController.Instance.Reload_Game();
             LoadInterstitial();
         }
     }
     
+    public void ShowInterstitialWin()
+    {
+        if (GameController.Instance.countPlay >= 3)
+        {
+            if(NoAds) return;
+            if ( MaxSdk.IsInterstitialReady(adUnitId) )
+            {
+                checkAdsWin = true;
+                GameController.Instance.countPlay = 0;
+                MaxSdk.ShowInterstitial(adUnitId);
+            }
+            else
+            {
+                GameController.Instance.PlayGame_NextLvl();
+                LoadInterstitial();
+            }
+        }
+        else
+        {
+            GameController.Instance.PlayGame_NextLvl();
+        }
+    }
+
+    private bool checkAdsWin;
     public void InitializeRewardedAds()
     {
         // Attach callback

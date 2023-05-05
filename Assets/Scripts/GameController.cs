@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
 
     public GameObject panelNoInternet;
     public ParticleSystem particleWin;
-    private int countPlay;
+    public int countPlay;
     private void Awake()
     {
         Instance = this;
@@ -88,16 +88,11 @@ public class GameController : MonoBehaviour
         btn_Close_setting.onClick.AddListener(BackToMainMenu);
         //Game Scene
         btn_home_game.onClick.AddListener(BackToMainMenu);
-        btn_retry_game.onClick.AddListener(
-            delegate
-            {
-                Reload_Game();
-                FirebaseUtils.Instance.RetryStage(DataGame.Instance.lvl_current);
-            });
+        btn_retry_game.onClick.AddListener(Admob.Instance.ShowInterstitialLose);;
         //Game End
         btn_home_end.onClick.AddListener(BackToMainMenu);
-        btn_retry_end.onClick.AddListener(Reload_Game);
-        btn_next_end.onClick.AddListener(PlayGame_NextLvl);
+        btn_retry_end.onClick.AddListener(Admob.Instance.ShowInterstitialLose);
+        btn_next_end.onClick.AddListener(Admob.Instance.ShowInterstitialWin);
         btn_Ads_end.onClick.AddListener(WatchAdsToEarn);
         btn_hint.onClick.AddListener(ShowHind);
         panel_Levels.Load_lvl_item();
@@ -196,10 +191,6 @@ public class GameController : MonoBehaviour
         DataGame.Instance.SaveLvlCurrent();
         FirebaseUtils.Instance.Start_Lvl(DataGame.Instance.lvl_current);
         countPlay++;
-        if (countPlay % 2 == 0)
-        {
-            StartCoroutine(StartAdsInter());
-        }
     }
     IEnumerator createNewLvl()
     {
@@ -396,12 +387,7 @@ public class GameController : MonoBehaviour
         panel_EndGame.ActiveLose();
         FirebaseUtils.Instance.FailLevelStage(DataGame.Instance.lvl_current);
     }
-
-    IEnumerator StartAdsInter()
-    {
-        yield return new WaitForSeconds(1.5f);
-        Admob.Instance.ShowInterstitial();
-    }
+    
     
     public void TurnOnMusic()
     {
