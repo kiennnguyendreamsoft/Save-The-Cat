@@ -30,7 +30,9 @@ public class Admob : ManualSingleton<Admob>
         MaxSdk.SetTestDeviceAdvertisingIdentifiers(new string[]{"3d9b1cb5-c1d3-4bd1-6e6a-10ca1ad1abe1"} );
         MaxSdk.InitializeSdk();
         CheckNoAds();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
+        MaxSdk.LoadAppOpenAd(AppOpenAdUnitId);
+        yield return new WaitForSeconds(4);
         InitializeBannerAds();
         ShowBanner();
         yield return new WaitForSeconds(2);
